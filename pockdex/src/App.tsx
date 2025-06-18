@@ -1,33 +1,24 @@
 
-import { useState } from "react";
-import { useFetchPokemonList } from "./hooks/useFetchPokemonList"
-import { useFetchPokemonDetails } from "./hooks/useFetchPokemonDetails";
 
+import { GlobalStyles } from "./styles/GlobalStyles";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import PokemonDetailsPage from "./pages/PokemonDetailsPage";
+import TopBar from "./components/TopBar/TopBar";
 
 
 function App() {
 
-  const LIMIT :number = 12;
-  const [offSet,setOffSet] = useState<number>(0);
-  const [name,setName] = useState<string>("bulbasaur");
-
-
-  const {pokemonsList} = useFetchPokemonList(LIMIT, offSet);
-  const {pokemon} = useFetchPokemonDetails(name);
-
 
   return (
-  <>
- 
-    {
-     <div>
-          
-           {pokemonsList.length === 0 ? 'No pokemons!':pokemonsList.map( (p,index) => <p key={index}>{p.name}</p>)} 
-            <p>{pokemon?.description}</p>
-          
-    </div>
-    }
-  </>
+    <>
+    <GlobalStyles/>
+   <TopBar/>
+   <Routes>
+      <Route path="/" element={<HomePage/>} />
+      <Route path="/PokemonDetails/:name" element={<PokemonDetailsPage />} />
+    </Routes>
+    </>
   )
 }
 
