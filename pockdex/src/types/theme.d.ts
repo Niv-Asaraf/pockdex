@@ -8,9 +8,9 @@ declare module 'styled-components' {
       black: string;
       green: string;
       darkBlue: string;
-      LightGray: string;
+      lightGray: string;
       hoverGreen: string;
-      LightBlue: string;
+      lightBlue: string;
       hoverBlue: string;
       typeColors: {
         [key: string]: string;

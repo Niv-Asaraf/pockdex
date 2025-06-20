@@ -19,7 +19,7 @@ export const Logo = styled.img`
 margin-top:5%;
 margin-left:29%;
 margin-right:25%;
-height:95%;
+height:90%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
    margin-top:0.3%;
@@ -38,7 +38,7 @@ export const ButtonGroup = styled.div`
     display: flex;
     justify-content: flex-start;
     height:100%;
-     margin-right:10%;
+    margin-right:10%;
   };
 
 `;
@@ -52,6 +52,7 @@ export const NavButton = styled.button<NavButtonProps>`
   color: ${({theme, $active}) => $active?theme.colors.black: theme.colors.white};
   border:none;
   padding:15%;
+  font-size: 16px;
 
    &:hover {
     background-color:${({theme, $active})=> $active? theme.colors.hoverGreen: theme.colors.hoverBlue}

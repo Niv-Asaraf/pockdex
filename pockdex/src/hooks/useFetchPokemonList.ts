@@ -8,7 +8,6 @@ import type { PokemonBasic, PokemonCardDetails } from "../types/pokemon";
     const [isLoading,setIsLoading] = useState<boolean>(false);
     const [error,setError] = useState<string>("");
     const [pokemonsList,setPokemonsList] = useState<PokemonCardDetails[]>([]);
-    
     useEffect(() => {
 
     const fetchData = async () => {
@@ -21,7 +20,9 @@ import type { PokemonBasic, PokemonCardDetails } from "../types/pokemon";
               const detailedData : PokemonCardDetails[] =  await Promise.all(
                 basicData.map(p =>  getPokemonByName(p.name))
               );
-              setPokemonsList(prev => [...prev,...detailedData]);    
+              console.log('Check 2',detailedData); // Check 2
+              
+              setPokemonsList(prev => [ ...prev, ...detailedData ]); 
         } catch (error) {
             setError('Fetch failed');
         }finally{
@@ -30,7 +31,12 @@ import type { PokemonBasic, PokemonCardDetails } from "../types/pokemon";
     }
 
     fetchData();
+    
     },[offSet]);
 
     return {isLoading,error,pokemonsList};
+
+
  }
+
+ 

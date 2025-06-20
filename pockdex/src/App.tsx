@@ -2,7 +2,7 @@
 
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import PokemonDetailsPage from "./pages/PokemonDetailsPage";
 import TopBar from "./components/TopBar/TopBar";
 

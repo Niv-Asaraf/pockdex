@@ -6,6 +6,7 @@ export type PokemonBasic = {
 
              //PokemonCardPreview
 export type PokemonCardDetails = {
+    id:number,
     name: string,
     sprites : {
         front_default:string;
