@@ -11,6 +11,8 @@ export const useFetchPokemonDetails = (name: string) => {
 
     useEffect(() => {
 
+        if(name.trim()==="")return;
+        
         const fetchData = async () => {
         try {
            setIsLoading(true);

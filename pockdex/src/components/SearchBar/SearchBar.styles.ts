@@ -11,18 +11,26 @@ export const SearchWarpper = styled.div`
 
 export const SearchBox = styled.div`
     display: flex;
-    margin-left: 90px;
+    margin-left: 5px;
+
+    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        margin-left: 90px;
+    };
 `;
 
 export const SearchInput =styled.input`
                 border-color: ${({theme})=>theme.colors.darkBlue};
-                padding: 7px 23px;
+                padding: 7px 0px;
                 border: 1px solid;
                 border-radius: 9px;
                 background-color:${({theme})=>theme.colors.lightGray};
                 margin-bottom: 0.5vh;
                 font-size: 21px;
                 color: ${({theme})=>theme.colors.lightBlue};
+
+                 @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+                  padding: 7px 23px;
+                 }
 `;
 
 export const SearchButton = styled.button `

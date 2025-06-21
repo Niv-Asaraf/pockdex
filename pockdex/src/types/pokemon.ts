@@ -4,22 +4,21 @@ export type PokemonBasic = {
     url: string
 }
 
-             //PokemonCardPreview
 export type PokemonCardDetails = {
     id:number,
     name: string,
     sprites : {
         front_default:string;
-    }
+    };
+    types: {
+    type: { name: string };
+  }[];
 }
 
 export type PokemonFullDetails = PokemonCardDetails & {
   stats: {
     base_stat: number;
     stat: { name: string };
-  }[];
-  types: {
-    type: { name: string };
   }[];
   description: string;
 };

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const HomePageWrapper = styled.div`
 text-align: center;
-margin-top: 5vh;
+margin-top: 7vh;
 margin-bottom: 5vh;
 `;
 
