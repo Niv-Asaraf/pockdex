@@ -1,8 +1,8 @@
 
 
 import type { FullPokemonData } from "../../types/pokemon";
-import { Card,DescriptionContent,DividerLine,FirstContentWrapper, Image,SecondContentWrapper,
-        Span, SpanTitle, StatsBox, StatsContent, TopContentWrapper, TypeBox, TypesWrapper } from "./PokemonCard.styles";
+import { Card,DescriptionBox,DescriptionContent,DividerLine,FirstContentWrapper, Image,SecondContentWrapper,
+        Span, SpanPokemonIndex, SpanTitle, StatColumnWrapper, StatsBox, StatsContent, TypeBox, TypesWrapper } from "./PokemonCard.styles";
 
 
 interface PokemonCardProps {
@@ -25,18 +25,22 @@ export default function PokemonCard( {index,name,imgUrl,ispokemonDetails,
         return total;
     };
 
+    const addZerosToNumber = (index: number) : string => { 
+        let res = "";
+        if(index<10) res = `#00${index}`;
+        else if(index<100) res = `#0${index}`;
+        else res = `#${index}`;
+        return res;
+    }
+
 
     return(
        
         <Card onClick={ () => setSelectedName(name) } $ispokemondetails={ispokemonDetails}> 
 
-            <FirstContentWrapper id="A">
+            <FirstContentWrapper >
 
-            <TopContentWrapper >
-                <SpanTitle >
-                #{(index)}
-                </SpanTitle>
-            </TopContentWrapper>
+            <SpanPokemonIndex>{addZerosToNumber(index)}</SpanPokemonIndex>
             <Image src={imgUrl} alt={index + " - " + name} $ispokemondetails={ispokemonDetails}/>
 
             <Span $ispokemondetails={ispokemonDetails}>{name}</Span>
@@ -60,27 +64,37 @@ export default function PokemonCard( {index,name,imgUrl,ispokemonDetails,
                <>
                <DividerLine/>
                
-                <SecondContentWrapper  id= "B">
+                <SecondContentWrapper >
                 
                         {/* description - Box */}
-                <div>
-                    <SpanTitle >Description</SpanTitle>
+                <DescriptionBox >
+                    <SpanTitle>Description</SpanTitle>
                     <DescriptionContent>{selectedPokemon?.description}</DescriptionContent>
-                </div>
+                </DescriptionBox>
 
                 <StatsBox>
 
-                <SpanTitle style={{fontSize:'22px',fontWeight:'500'}} >Stats</SpanTitle>
+                <SpanTitle>Stats</SpanTitle>
                 
                 <StatsContent >
+                
+                <StatColumnWrapper >
 
                 <span>Hp: {selectedPokemon?.stats[0].base_stat}</span>
                 <span>Attack: {selectedPokemon?.stats[1].base_stat}</span>
                 <span>Defense: {selectedPokemon?.stats[2].base_stat}</span>
+                </StatColumnWrapper>
+
+                <StatColumnWrapper >
                 <span>Special Atk: {selectedPokemon?.stats[3].base_stat}</span>
                 <span>Special Def: {selectedPokemon?.stats[4].base_stat}</span>
                 <span>Speed: {selectedPokemon?.stats[5].base_stat}</span>
+                </StatColumnWrapper>
+
+                <StatColumnWrapper >  
                 <span>Total: {calcTotalStats()} </span>
+                </StatColumnWrapper>
+
 
                 </StatsContent >
 

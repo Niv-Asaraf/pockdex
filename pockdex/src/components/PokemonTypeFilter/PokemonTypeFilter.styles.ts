@@ -3,10 +3,18 @@ import styled from "styled-components";
 
 export const FilterWrapper = styled.div`
 margin-top: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 15px;
+
+@media (min-width: 768px) {
+margin-right: 70px;
+};
+
 `;
 
 export const FilterLabel = styled.label`
-margin-right: 8px;
 color: ${({theme}) => theme.colors.lightBlue};
 `;
 

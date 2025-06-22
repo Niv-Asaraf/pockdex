@@ -31,22 +31,6 @@ export const theme = {
         steel:   '#B7B7CE',
         fairy:   '#D685AD',     
         },
-
-    //     navButtonColors: {
-    //         active: {
-    //             bg: '#94D97E',    
-    //             text: '#000000', 
-    //         },
-    //         hover: {
-    //             bg: '#7DC665',   
-    //             text: '#FFFFFF',
-    //         },
-    //         default: {
-    //             bg: '#020166',  
-    //             text: '#FFFFFF',
-    //         },
-    // },
-
     },
     breakpoints: {
         mobile: "480px",

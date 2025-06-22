@@ -37,7 +37,6 @@ export default function SearchBar ( {  onSearch, searchInput, setSearchInput ,se
         }
     }
     const hanleRecentResultsDisplay = (value:boolean) :void => {
-        // return searchInput.trim() !== "" && searchHistory.length > 0;
         if(value && searchHistory.length > 0) {
             setOpenSearch(true);
         }else {

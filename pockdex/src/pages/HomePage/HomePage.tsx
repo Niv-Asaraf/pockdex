@@ -55,13 +55,7 @@ export default function HomePage () {
                                 : p.name.includes(cleanValue.toLowerCase())
    );
     
-    // if( resultsList.length > 0 ){
-    //   setSearchResults(resultsList);
-    // }
-    
     setSearchResults(resultsList);
-   
-    // setSearchInput('');
     addToSearchHistory(cleanValue);
   };
 
