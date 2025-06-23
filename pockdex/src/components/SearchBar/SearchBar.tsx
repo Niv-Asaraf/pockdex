@@ -14,13 +14,13 @@ interface SearchBarProps{
 export default function SearchBar ( {  onSearch, searchInput, setSearchInput ,searchHistory,setSearchHistory}: SearchBarProps ) {
 
     const searchWrapperRef = useRef<HTMLDivElement>(null);
-    const [openSearch,setOpenSearch] = useState<boolean>(false);
+    const [isSearchOpen,setIsSearchOpen] = useState<boolean>(false);
 
       useEffect(() => {
         
         const handleClickOutside = (event: MouseEvent) => {
           if (searchWrapperRef.current && !searchWrapperRef.current.contains(event.target as Node)) {
-            setOpenSearch(false); 
+            setIsSearchOpen(false); 
           }
         };
     
@@ -33,20 +33,20 @@ export default function SearchBar ( {  onSearch, searchInput, setSearchInput ,se
         const newSearchHistory = searchHistory.filter(s=> searchHistory[index]!== s );
         setSearchHistory([...newSearchHistory]);
         if(newSearchHistory.length===0){
-            setOpenSearch(false);
+            setIsSearchOpen(false);
         }
     }
     const hanleRecentResultsDisplay = (value:boolean) :void => {
         if(value && searchHistory.length > 0) {
-            setOpenSearch(true);
+            setIsSearchOpen(true);
         }else {
-            setOpenSearch(false);
+            setIsSearchOpen(false);
         }
 
     }
     const clearAllHistory = () :void =>{
         setSearchHistory([]);
-        setOpenSearch(false);
+        setIsSearchOpen(false);
 
     }
    
@@ -60,7 +60,7 @@ export default function SearchBar ( {  onSearch, searchInput, setSearchInput ,se
                 <SearchButton onClick={()=>onSearch(searchInput)}>Search</SearchButton>
             </SearchBox>
             
-            <HistoryWrapper open={openSearch} >
+            <HistoryWrapper open={isSearchOpen} >
 
             <RecentSearchWrapper>
 

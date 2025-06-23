@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 interface CardProps {
-$ispokemondetails: boolean;
+$isPokemonDetails: boolean;
 }
 
 interface TypeProps {
@@ -22,7 +22,7 @@ export const Card = styled.div <CardProps>`
 
     max-width: 255px;
 
-    height: ${({$ispokemondetails})=> $ispokemondetails? '780px':'255px'};
+    height: ${({$isPokemonDetails})=> $isPokemonDetails? '780px':'255px'};
 
     border-radius: 10px ;
     box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.3);  
@@ -34,12 +34,12 @@ export const Card = styled.div <CardProps>`
 
     justify-content: center;                                                                
 
-    max-width: ${({$ispokemondetails})=> $ispokemondetails? '650px':'255px'};               
+    max-width: ${({$isPokemonDetails})=> $isPokemonDetails? '650px':'255px'};               
 
-    height: ${({$ispokemondetails})=> $ispokemondetails? '400px':'255px'};                 
+    height: ${({$isPokemonDetails})=> $isPokemonDetails? '400px':'255px'};                 
 
-    padding-left:${({$ispokemondetails})=> $ispokemondetails? '40px':''};                   
-    padding-right:${({$ispokemondetails})=> $ispokemondetails? '20px':''};                  
+    padding-left:${({$isPokemonDetails})=> $isPokemonDetails? '40px':''};                   
+    padding-right:${({$isPokemonDetails})=> $isPokemonDetails? '20px':''};                  
 
     };
 `;
@@ -47,14 +47,14 @@ export const Card = styled.div <CardProps>`
 
 
 export const Span = styled.span<CardProps>`
-    font-size: ${({$ispokemondetails})=> $ispokemondetails? '32px':'22px'};
+    font-size: ${({$isPokemonDetails})=> $isPokemonDetails? '32px':'22px'};
     color: ${({theme})=>theme.colors.lightBlue};
     `;
 
 export const Image = styled.img <CardProps>`
     
-    height:${({$ispokemondetails})=> $ispokemondetails? '220px':'180px'};
-    width: ${({$ispokemondetails})=> $ispokemondetails? '220px':'180px'};
+    height:${({$isPokemonDetails})=> $isPokemonDetails? '220px':'180px'};
+    width: ${({$isPokemonDetails})=> $isPokemonDetails? '220px':'180px'};
 `;
 
 export const FirstContentWrapper = styled.div`
@@ -85,7 +85,7 @@ export const DividerLine = styled.div`
   height: 1px;
   margin: 30px 0;
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 1px;
     height: auto;
     min-height: 300px; 
@@ -99,7 +99,7 @@ export const SecondContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;  
 
-   @media (min-width: 768px) {
+   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     align-items: flex-start;  
    };   
 `;
@@ -110,7 +110,7 @@ export const StatsBox = styled.div`
       gap: 3px;
       margin-top: 20px;
    
-      @media (min-width: 768px) {
+      @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
       align-items: flex-start; 
       margin-top: 40px;
 
@@ -140,7 +140,7 @@ export const DescriptionContent = styled.p`
   font-weight: 400;
   text-align: center;                          
   
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     text-align: left;                        
     padding: 0;                              
     max-width: 340px;                      
@@ -156,7 +156,7 @@ export const StatsContent = styled.div`
     font-weight: 400;
     margin-top: 9px;
 
-    @media (min-width: 768px) {
+    @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     flex-direction: row;
     align-items: flex-start;
     gap: 50px;
@@ -169,7 +169,7 @@ export const StatColumnWrapper = styled.div`
     justify-content: center;
     align-items: center;
 
-     @media (min-width: 768px) {
+     @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
      align-items: flex-start;
      }
 `;
@@ -179,7 +179,7 @@ export const DescriptionBox = styled.div`
     flex-direction: column;
     align-items: center;
 
-     @media (min-width: 768px) {
+     @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
      align-items: flex-start;
      };
     `;

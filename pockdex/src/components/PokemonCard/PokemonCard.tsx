@@ -12,12 +12,21 @@ interface PokemonCardProps {
   ispokemonDetails:boolean;
  setSelectedName: React.Dispatch < React.SetStateAction < string> >;
  selectedPokemon: FullPokemonData | null;
+ 
+ pokemon: {
+    id:number,
+    name:string,
+     sprites : {
+        front_default:string;
+    }
+ }
 
 }
 
-export default function PokemonCard( {index,name,imgUrl,ispokemonDetails,
+export default function PokemonCard( {pokemon,ispokemonDetails,
                                       setSelectedName,selectedPokemon}:PokemonCardProps) {
     
+    const {id,name,sprites} = pokemon;                                 
     
     const calcTotalStats = () : number => {     
         let total = 0;
@@ -26,24 +35,20 @@ export default function PokemonCard( {index,name,imgUrl,ispokemonDetails,
     };
 
     const addZerosToNumber = (index: number) : string => { 
-        let res = "";
-        if(index<10) res = `#00${index}`;
-        else if(index<100) res = `#0${index}`;
-        else res = `#${index}`;
-        return res;
+        return `#${index.toString().padStart(3, '0')}`;
     }
 
 
     return(
        
-        <Card onClick={ () => setSelectedName(name) } $ispokemondetails={ispokemonDetails}> 
+        <Card onClick={ () => setSelectedName(name) } $isPokemonDetails={ispokemonDetails}> 
 
             <FirstContentWrapper >
 
-            <SpanPokemonIndex>{addZerosToNumber(index)}</SpanPokemonIndex>
-            <Image src={imgUrl} alt={index + " - " + name} $ispokemondetails={ispokemonDetails}/>
+            <SpanPokemonIndex>{addZerosToNumber(id)}</SpanPokemonIndex>
+            <Image src={sprites.front_default} alt={id + " - " + name} $isPokemonDetails={ispokemonDetails}/>
 
-            <Span $ispokemondetails={ispokemonDetails}>{name}</Span>
+            <Span $isPokemonDetails={ispokemonDetails}>{name}</Span>
             
                 {
 

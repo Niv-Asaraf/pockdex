@@ -23,6 +23,12 @@ export default function PokemonDetails({setSelectedName,selectedPokemon,setShowL
         setSelectedName("");
     }
 
+    const pokemon = {
+        id: selectedPokemon.id,
+        name: selectedPokemon.name,
+        sprites: selectedPokemon.sprites
+    }
+
     return(
         
         <CardDetailsWrapper>   
@@ -36,6 +42,7 @@ export default function PokemonDetails({setSelectedName,selectedPokemon,setShowL
                     ispokemonDetails={true} 
                     setSelectedName={setSelectedName}
                     selectedPokemon={selectedPokemon} 
+                    pokemon={pokemon}
                     />
         </CardDetailsWrapper>
     )
