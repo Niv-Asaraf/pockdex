@@ -15,11 +15,6 @@ declare module 'styled-components' {
       typeColors: {
         [key: string]: string;
       };
-      // navButtonColors: {
-      //   active: { bg: string; text: string };
-      //   hover: { bg: string; text: string };
-      //   default: { bg: string; text: string };
-      // };
     };
     breakpoints: {
       mobile: string;

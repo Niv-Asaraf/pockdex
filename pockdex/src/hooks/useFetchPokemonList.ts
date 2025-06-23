@@ -15,12 +15,10 @@ import type { PokemonBasic, PokemonCardDetails } from "../types/pokemon";
               setIsLoading(true);
               const basicData : PokemonBasic[] = await getPokemonsList(limit,offSet);
 
-              console.log('Check 1',basicData); // Check 1
 
               const detailedData : PokemonCardDetails[] =  await Promise.all(
                 basicData.map(p =>  getPokemonByName(p.name))
               );
-              console.log('Check 2',detailedData); // Check 2
               
               setPokemonsList(prev => [ ...prev, ...detailedData ]); 
         } catch (error) {

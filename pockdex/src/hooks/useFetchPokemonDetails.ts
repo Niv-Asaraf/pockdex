@@ -22,8 +22,6 @@ export const useFetchPokemonDetails = (name: string) => {
             getPokemonDescription(name)
             ]);
 
-            console.log('check 2',{...details, description}); // Check 2
-
             setPokemon({...details, description});
         } catch (error) {
         setError('Fetch failed');

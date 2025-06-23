@@ -28,6 +28,7 @@ export default function HomePage () {
   const {pokemonsList} = useFetchPokemonList(LIMIT, offSet);
   const {pokemon} = useFetchPokemonDetails(selectedName);
 
+
   const filteredList = useMemo(() => {
     const baseList = searchResults ?? pokemonsList;
     if (selectedType === "all") return baseList;
@@ -54,10 +55,7 @@ export default function HomePage () {
                                 : p.name.includes(cleanValue.toLowerCase())
    );
     
-    if(resultsList.length>0){
-      setSearchResults(resultsList);
-    }
-    setSearchInput('');
+    setSearchResults(resultsList);
     addToSearchHistory(cleanValue);
   };
 
@@ -66,12 +64,17 @@ export default function HomePage () {
     setSearchHistory( prev => [ ...prev, searchValue ] );
   };
 
+  const handleBackToAll = ():void => {
+    setSearchResults(null);
+    setSearchInput("");
+  }
+
     return (
       <>
 
             <HomePageWrapper >
        {
-          selectedName ===""&&
+          selectedName === "" &&
           <>
           <SearchBar onSearch={handleSearch} searchInput={searchInput} 
                      setSearchInput={setSearchInput}
@@ -85,14 +88,12 @@ export default function HomePage () {
       {
         pokemon && selectedName !=="" ? (  <PokemonDetails selectedPokemon={pokemon} 
                                   setSelectedName={setSelectedName} setShowLoadButton={setShowLoadButton} /> )
-        : ( <CardGrid 
-          pokemonsList={filteredList}
-                      setSelectedName={setSelectedName} /> )
+        : ( <CardGrid pokemonsList={filteredList} setSelectedName={setSelectedName} /> )
       }
       
       
       {
-      searchResults? (<LoadMoreButton onClick={()=>setSearchResults(null)}>Back to all</LoadMoreButton>)
+      searchResults? (<LoadMoreButton onClick={handleBackToAll}>Back to all</LoadMoreButton>)
         :
         ( showLoadButton && <LoadMoreButton onClick={loadMorePokemons}>Load more...</LoadMoreButton>)
       }
