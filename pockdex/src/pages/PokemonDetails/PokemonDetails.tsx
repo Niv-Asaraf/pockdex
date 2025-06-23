@@ -39,7 +39,7 @@ export default function PokemonDetails({setSelectedName,selectedPokemon,setShowL
                     name={selectedPokemon.name} 
                     imgUrl={selectedPokemon.sprites.front_default} 
                     index={selectedPokemon.id} 
-                    ispokemonDetails={true} 
+                    isPokemonDetails={true} 
                     setSelectedName={setSelectedName}
                     selectedPokemon={selectedPokemon} 
                     pokemon={pokemon}

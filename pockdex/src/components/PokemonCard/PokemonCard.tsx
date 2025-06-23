@@ -9,7 +9,7 @@ interface PokemonCardProps {
   index: number;
   name: string;
   imgUrl: string;
-  ispokemonDetails:boolean;
+  isPokemonDetails:boolean;
  setSelectedName: React.Dispatch < React.SetStateAction < string> >;
  selectedPokemon: FullPokemonData | null;
  
@@ -23,7 +23,7 @@ interface PokemonCardProps {
 
 }
 
-export default function PokemonCard( {pokemon,ispokemonDetails,
+export default function PokemonCard( {pokemon,isPokemonDetails,
                                       setSelectedName,selectedPokemon}:PokemonCardProps) {
     
     const {id,name,sprites} = pokemon;                                 
@@ -41,18 +41,18 @@ export default function PokemonCard( {pokemon,ispokemonDetails,
 
     return(
        
-        <Card onClick={ () => setSelectedName(name) } $isPokemonDetails={ispokemonDetails}> 
+        <Card onClick={ () => setSelectedName(name) } $isPokemonDetails={isPokemonDetails}> 
 
             <FirstContentWrapper >
 
             <SpanPokemonIndex>{addZerosToNumber(id)}</SpanPokemonIndex>
-            <Image src={sprites.front_default} alt={id + " - " + name} $isPokemonDetails={ispokemonDetails}/>
+            <Image src={sprites.front_default} alt={id + " - " + name} $isPokemonDetails={isPokemonDetails}/>
 
-            <Span $isPokemonDetails={ispokemonDetails}>{name}</Span>
+            <Span $isPokemonDetails={isPokemonDetails}>{name}</Span>
             
                 {
 
-                ispokemonDetails && 
+                isPokemonDetails && 
                <TypesWrapper>
                     {
                     selectedPokemon?.types.map( (t,index) => 
@@ -65,7 +65,7 @@ export default function PokemonCard( {pokemon,ispokemonDetails,
             </FirstContentWrapper>
 
                {          
-               ispokemonDetails && 
+               isPokemonDetails && 
                <>
                <DividerLine/>
                
