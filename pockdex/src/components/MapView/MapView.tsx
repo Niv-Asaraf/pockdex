@@ -26,10 +26,10 @@ export default function MapView ({pokemon}:MapProps) {
         lat: number,
         lng: number
     }
-     const MOVEO_LOCATION :PlaceType = {
-        lat: 32.063331, 
-        lng:34.768214
-    }
+     const MOVEO_LOCATION: PlaceType = {
+       lat: 32.063331,
+       lng: 34.768214,
+     };
 
     const handleDirectionsCallback = (result:google.maps.DirectionsResult | null,
                                       status: google.maps.DirectionsStatus) : void => {
