@@ -5,6 +5,13 @@ import { MapButton } from "./MapButtons.styles";
 interface MapButtonsProps {
   onChangeMode: (mode: google.maps.TravelMode) => void;
 }
+const TravelModeEmoji = {
+  DrivingEmoji: "🚗",
+  WalkingEmoji: "🚶‍♂️",
+  TransitEmoji: "🚌",
+};
+
+
 export default function MapButtons({ onChangeMode }: MapButtonsProps) {
   const [selectedMode, setSelectedMode] = useState<google.maps.TravelMode>(
     google.maps.TravelMode.DRIVING
@@ -29,9 +36,11 @@ export default function MapButtons({ onChangeMode }: MapButtonsProps) {
         onClick={() => onClickButton(google.maps.TravelMode.TRANSIT)}
         $selectedMode={selectedMode}
       >
-        🚌
+        {TravelModeEmoji.TransitEmoji}
       </MapButton>
-      <MapButton $selectedMode={selectedMode}>🚶‍♂️</MapButton>
+      <MapButton $selectedMode={selectedMode}>
+        {TravelModeEmoji.WalkingEmoji}
+      </MapButton>
       <MapButton
         $selectedMode={selectedMode}
         style={{
@@ -46,7 +55,7 @@ export default function MapButtons({ onChangeMode }: MapButtonsProps) {
         }}
         onClick={() => onClickButton(google.maps.TravelMode.DRIVING)}
       >
-        🚗
+        {TravelModeEmoji.DrivingEmoji}
       </MapButton>
     </div>
   );
