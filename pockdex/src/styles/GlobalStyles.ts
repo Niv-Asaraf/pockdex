@@ -1,4 +1,3 @@
-
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
@@ -9,4 +8,4 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Rubik', sans-serif;
     background-color: #fff;
   }
-`
+`;

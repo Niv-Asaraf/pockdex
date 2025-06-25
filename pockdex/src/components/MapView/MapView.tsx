@@ -8,6 +8,7 @@ import {
 } from "@react-google-maps/api";
 import MapButtons from "../MapButtons/MapButtons";
 import type { PokemonMapDetails } from "../../types/pokemon";
+import { MapWrapper } from "./MapView.styles";
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 interface MapProps {
@@ -26,14 +27,17 @@ export default function MapView({ pokemon }: MapProps) {
   const [travelMode, setTravelMode] = useState<google.maps.TravelMode | null>(
     null
   );
-  const [error, SetError] = useState<string>("");
+  // const [error, SetError] = useState<boolean>(false);
+  const [errorMessage, SetErrorMessage] = useState<string>("");
 
+  interface PlaceType {
+    lat: number;
+    lng: number;
+  }
   const MOVEO_LOCATION: PlaceType = {
     lat: 32.063331,
     lng: 34.768214,
   };
-
-  const MOVEO_TITLE = "Moveo Group";
 
   const handleDirectionsCallback = (
     result: google.maps.DirectionsResult | null,
@@ -41,9 +45,8 @@ export default function MapView({ pokemon }: MapProps) {
   ): void => {
     if (status === "OK" && result) {
       setDirections(result);
-      console.log(result);
     } else {
-      SetError("Directions request failed");
+      SetErrorMessage("Directions are unavailable");
     }
   };
 
@@ -55,13 +58,11 @@ export default function MapView({ pokemon }: MapProps) {
   return (
     <LoadScript googleMapsApiKey={API_KEY} onLoad={() => setIsLoaded(true)}>
       {isLoaded && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "70px",
-          }}
-        >
+        <MapWrapper>
+          {(!directions || !isLoaded) && (
+            <p style={{ color: "red" }}>{errorMessage}</p>
+          )}
+
           <GoogleMap
             mapContainerStyle={{
               height: "70vh",
@@ -74,7 +75,7 @@ export default function MapView({ pokemon }: MapProps) {
             zoom={13}
           >
             <MapButtons onChangeMode={changeTravelMode} />
-            <Marker position={MOVEO_LOCATION} title={MOVEO_TITLE} />
+            <Marker position={MOVEO_LOCATION} title="Moveo Group" />
             <Marker
               position={pokemon.location}
               title={pokemon.name}
@@ -103,7 +104,7 @@ export default function MapView({ pokemon }: MapProps) {
               )
             )}
           </GoogleMap>
-        </div>
+        </MapWrapper>
       )}
     </LoadScript>
   );

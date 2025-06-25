@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { theme } from "../../styles/theme";
-import { MapButton } from "./MapButtons.styles";
+import { ButtonsWrapper, MapButton } from "./MapButtons.styles";
 
 interface MapButtonsProps {
   onChangeMode: (mode: google.maps.TravelMode) => void;
@@ -22,41 +21,25 @@ export default function MapButtons({ onChangeMode }: MapButtonsProps) {
     onChangeMode(mode);
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "5px",
-        position: "absolute",
-        top: 11,
-        right: 70,
-        zIndex: 1,
-      }}
-    >
+    <ButtonsWrapper>
       <MapButton
         onClick={() => onClickButton(google.maps.TravelMode.TRANSIT)}
-        $selectedMode={selectedMode}
+        $isSelected={selectedMode === "TRANSIT"}
       >
-        {TravelModeEmoji.TransitEmoji}
-      </MapButton>
-      <MapButton $selectedMode={selectedMode}>
-        {TravelModeEmoji.WalkingEmoji}
+        🚌
       </MapButton>
       <MapButton
-        $selectedMode={selectedMode}
-        style={{
-          backgroundColor:
-            selectedMode === "DRIVING"
-              ? theme.colors.green
-              : theme.colors.lightGray,
-          borderRadius: "12px",
-          padding: "2px 8px",
-          fontSize: "20px",
-          cursor: "pointer",
-        }}
-        onClick={() => onClickButton(google.maps.TravelMode.DRIVING)}
+        onClick={() => onClickButton(google.maps.TravelMode.WALKING)}
+        $isSelected={selectedMode === "WALKING"}
       >
-        {TravelModeEmoji.DrivingEmoji}
+        🚶‍♂️
       </MapButton>
-    </div>
+      <MapButton
+        onClick={() => onClickButton(google.maps.TravelMode.DRIVING)}
+        $isSelected={selectedMode === "DRIVING"}
+      >
+        🚗
+      </MapButton>
+    </ButtonsWrapper>
   );
 }
