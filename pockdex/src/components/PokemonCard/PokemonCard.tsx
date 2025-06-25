@@ -1,3 +1,4 @@
+import { DESCRIPTION_TITLE, STATS_TITLE } from "../../data/appTexts";
 import type { FullPokemonData } from "../../types/pokemon";
 import {
   Card,
@@ -24,15 +25,16 @@ interface PokemonCardProps {
   isPokemonDetails: boolean;
   setSelectedName: React.Dispatch<React.SetStateAction<string>>;
   selectedPokemon: FullPokemonData | null;
-
-  pokemon: {
-    id: number;
-    name: string;
-    sprites: {
-      front_default: string;
-    };
-  };
+  pokemon: Pokemon;
 }
+
+type Pokemon = {
+  id: number;
+  name: string;
+  sprites: {
+    front_default: string;
+  };
+};
 
 export default function PokemonCard({
   pokemon,
@@ -83,16 +85,15 @@ export default function PokemonCard({
           <DividerLine />
 
           <SecondContentWrapper>
-            {/* description - Box */}
             <DescriptionBox>
-              <SpanTitle>Description</SpanTitle>
+              <SpanTitle>{DESCRIPTION_TITLE}</SpanTitle>
               <DescriptionContent>
                 {selectedPokemon?.description}
               </DescriptionContent>
             </DescriptionBox>
 
             <StatsBox>
-              <SpanTitle>Stats</SpanTitle>
+              <SpanTitle>{STATS_TITLE}</SpanTitle>
 
               <StatsContent>
                 <StatColumnWrapper>

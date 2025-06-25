@@ -7,6 +7,11 @@ import {
   ShowDirectionsButton,
 } from "./PokemonDetails.styles";
 import MapView from "../../components/MapView/MapView";
+import {
+  HOME_PAGE_BUTTON,
+  HIDE_DIRECTIONS_BUTTON,
+  SHOW_DIRECTIONS_BUTTON,
+} from "../../data/appTexts";
 
 interface PokemonDetailsProps {
   setSelectedName: React.Dispatch<React.SetStateAction<string>>;
@@ -74,7 +79,7 @@ export default function PokemonDetails({
 
   return (
     <CardDetailsWrapper>
-      <BackHomeButton onClick={backToHome}> ← Home page </BackHomeButton>
+      <BackHomeButton onClick={backToHome}> {HOME_PAGE_BUTTON} </BackHomeButton>
 
       <PokemonCard
         name={selectedPokemon.name}
@@ -86,7 +91,7 @@ export default function PokemonDetails({
         pokemon={pokemon}
       />
       <ShowDirectionsButton onClick={() => setIsMapShow((prev) => !prev)}>
-        {(!isMapShow ? "Show" : "Hide") + " Directions"}
+        {isMapShow ? HIDE_DIRECTIONS_BUTTON : SHOW_DIRECTIONS_BUTTON}
       </ShowDirectionsButton>
       {isMapShow && locationGenerated && <MapView pokemon={pokemonOnMap} />}
     </CardDetailsWrapper>

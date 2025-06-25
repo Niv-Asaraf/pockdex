@@ -8,7 +8,12 @@ import {
 } from "@react-google-maps/api";
 import MapButtons from "../MapButtons/MapButtons";
 import type { PokemonMapDetails } from "../../types/pokemon";
-import { MapWrapper } from "./MapView.styles";
+import { ErrorMsg, MapWrapper } from "./MapView.styles";
+import { DIRECTIONS_ERROR_MSG, MOVEO_TITLE } from "../../data/appTexts";
+import {
+  MOVEO_LOCATION_LAT,
+  MOVEO_LOCATION_LNG,
+} from "../../data/appConstants";
 const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 interface MapProps {
@@ -27,7 +32,6 @@ export default function MapView({ pokemon }: MapProps) {
   const [travelMode, setTravelMode] = useState<google.maps.TravelMode | null>(
     null
   );
-  // const [error, SetError] = useState<boolean>(false);
   const [errorMessage, SetErrorMessage] = useState<string>("");
 
   interface PlaceType {
@@ -35,8 +39,8 @@ export default function MapView({ pokemon }: MapProps) {
     lng: number;
   }
   const MOVEO_LOCATION: PlaceType = {
-    lat: 32.063331,
-    lng: 34.768214,
+    lat: MOVEO_LOCATION_LAT,
+    lng: MOVEO_LOCATION_LNG,
   };
 
   const handleDirectionsCallback = (
@@ -46,7 +50,7 @@ export default function MapView({ pokemon }: MapProps) {
     if (status === "OK" && result) {
       setDirections(result);
     } else {
-      SetErrorMessage("Directions are unavailable");
+      SetErrorMessage(DIRECTIONS_ERROR_MSG);
     }
   };
 
@@ -59,9 +63,7 @@ export default function MapView({ pokemon }: MapProps) {
     <LoadScript googleMapsApiKey={API_KEY} onLoad={() => setIsLoaded(true)}>
       {isLoaded && (
         <MapWrapper>
-          {(!directions || !isLoaded) && (
-            <p style={{ color: "red" }}>{errorMessage}</p>
-          )}
+          {(!directions || !isLoaded) && <ErrorMsg>{errorMessage}</ErrorMsg>}
 
           <GoogleMap
             mapContainerStyle={{
@@ -75,7 +77,7 @@ export default function MapView({ pokemon }: MapProps) {
             zoom={13}
           >
             <MapButtons onChangeMode={changeTravelMode} />
-            <Marker position={MOVEO_LOCATION} title="Moveo Group" />
+            <Marker position={MOVEO_LOCATION} title={MOVEO_TITLE} />
             <Marker
               position={pokemon.location}
               title={pokemon.name}

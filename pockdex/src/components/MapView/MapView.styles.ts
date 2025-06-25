@@ -6,3 +6,7 @@ export const MapWrapper = styled.div`
   align-items: center;
   margin-top: 50px;
 `;
+
+export const ErrorMsg = styled.p`
+  color: red;
+`;

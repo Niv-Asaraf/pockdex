@@ -10,6 +10,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import PokemonDetails from "../PokemonDetails/PokemonDetails";
 import { useFetchPokemonDetails } from "../../hooks/useFetchPokemonDetails";
 import PokemonTypeFilter from "../../components/PokemonTypeFilter/PokemonTypeFilter";
+import { BACK_TO_ALL_BUTTON, LOAD_MORE_BUTTON } from "../../data/appTexts";
 
 export default function HomePage() {
   const LIMIT: number = 12;
@@ -100,11 +101,13 @@ export default function HomePage() {
         )}
 
         {searchResults ? (
-          <LoadMoreButton onClick={handleBackToAll}>Back to all</LoadMoreButton>
+          <LoadMoreButton onClick={handleBackToAll}>
+            {BACK_TO_ALL_BUTTON}
+          </LoadMoreButton>
         ) : (
           showLoadButton && (
             <LoadMoreButton onClick={loadMorePokemons}>
-              Load more...
+              {LOAD_MORE_BUTTON}
             </LoadMoreButton>
           )
         )}

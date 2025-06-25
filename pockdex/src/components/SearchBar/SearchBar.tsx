@@ -11,6 +11,12 @@ import {
   SearchInput,
   SearchWarpper,
 } from "./SearchBar.styles";
+import {
+  CLEAR_BUTTON,
+  RECENT_SEARCHES_TITLE,
+  SEARCH_BUTTON,
+  DELETE_BUTTON,
+} from "../../data/appTexts";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
@@ -77,22 +83,22 @@ export default function SearchBar({
           onFocus={() => hanleRecentResultsDisplay(true)}
         />
         <SearchButton onClick={() => onSearch(searchInput)}>
-          Search
+          {SEARCH_BUTTON}
         </SearchButton>
       </SearchBox>
 
       <HistoryWrapper open={isSearchOpen}>
         <RecentSearchWrapper>
-          <span>RECENT SEARCHES</span>
+          <span>{RECENT_SEARCHES_TITLE}</span>
 
-          <ClearButton onClick={clearAllHistory}>CLEAR</ClearButton>
+          <ClearButton onClick={clearAllHistory}>{CLEAR_BUTTON}</ClearButton>
         </RecentSearchWrapper>
 
         {searchHistory.slice(-3).map((s, index) => (
           <ResultsWrapper key={index}>
             <Result onClick={() => onSearch(s)}>{s}</Result>
             <DeleteButton onClick={() => deleteOneSearchHistory(index)}>
-              X
+              {DELETE_BUTTON}
             </DeleteButton>
           </ResultsWrapper>
         ))}
