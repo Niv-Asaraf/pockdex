@@ -29,6 +29,7 @@ export const NO_RESULTS_TEXT = "No results";
 // --- HomePage.tsx ---
 export const BACK_TO_ALL_BUTTON = "Back to all";
 export const LOAD_MORE_BUTTON = "Load more...";
+export const LOAD_LESS_BUTTON = "Load less...";
 
 // --- PokemonDetails.tsx ---
 export const HOME_PAGE_BUTTON = "← Home page";
