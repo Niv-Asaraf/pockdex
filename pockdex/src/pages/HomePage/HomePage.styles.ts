@@ -13,7 +13,14 @@ export const LoadMoreButton = styled.button`
   border: 1px solid;
   border-radius: 9px;
   font-size: 18px;
-  padding: 10px 70px;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  padding: 10px 30px;
+  width: 250px;
+`;
+
+export const MoreAndLessWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 50px;
 `;
