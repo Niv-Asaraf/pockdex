@@ -1,10 +1,12 @@
 import type { PokemonDescription } from "../types/pokemon";
 
-const BASE_URL = 'https://pokeapi.co/api/v2';
+const BASE_URL = "https://pokeapi.co/api/v2";
 
 export const getPokemonsList = async (limit: number, offset: number) => {
-  const res = await fetch(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`);
-  if (!res.ok) throw new Error('Failed to fetch pokemon list');
+  const res = await fetch(
+    `${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`
+  );
+  if (!res.ok) throw new Error("Failed to fetch pokemon list");
   const finalData = await res.json();
   return finalData.results;
 };
